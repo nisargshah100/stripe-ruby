@@ -44,6 +44,8 @@ There are two kinds of keys. The Secret Key should never be shared with
 anyone and should reside in a secure place (don't commit to git, etc). The
 publishable key is stored in javascript.
 
+== How it Works
+
 Stripe works by first sending the credit card information to stripe server. 
 Once the server recieves and validates the information, it returns a card token.
 The card token can be used to make charges to the user's account. The credit
@@ -102,8 +104,7 @@ can be used to charge.
     :description => "payinguser@example.com"
   )
 
-The card token can also be stored and charged later. In order to charge later,
-a customer must be created.
+In order to charge later, a customer must be created.
 
   # token from stripe server 
   token = params[:stripeToken]
