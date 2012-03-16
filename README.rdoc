@@ -122,6 +122,11 @@ The customer can be stored, and can be charged later
     :customer => customer.id
   )
 
+The customers can also be retrieved and deleted
+  
+  customers = Stripe::Customer.all
+  customers[0].delete
+
 == Subscription
 
 In order to create a subscription, you need to first create a plan. The plan allow
@@ -129,8 +134,21 @@ for repetitive billing.
 
   Stripe::Plan.create(
     :amount => 2000,                    # in cents
-    :interval => 'month',
-    :name => 'Amazing Gold Plan',
-    :currency => 'usd',
-    :id => 'gold'
+    :interval => 'month',               # month / year 
+    :name => 'Amazing Gold Plan',       # displayed on invoices
+    :currency => 'usd',                 # 3-letter ISO code
+    :id => 'gold'                       # unqiue id for each plan
   )
+
+In order to charge to a plan, a customer needs to be created & stored. 
+
+  customer = Stripe::Customer.create(
+    :card => token,
+    :description => "payinguser@example.com"
+    :plan => 'gold'                               # unique id of the plan
+  )
+
+# TODO: Add plan to current customer
+#       Trial Subscription
+#       Webhooks
+
