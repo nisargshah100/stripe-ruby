@@ -49,7 +49,9 @@ publishable key is stored in javascript.
 Stripe works by first sending the credit card information to stripe server. 
 Once the server recieves and validates the information, it returns a card token.
 The card token can be used to make charges to the user's account. The credit
-card information is maintained by stripe so you don't need to worry about it.
+card information is maintained by stripe so you don't need to worry about it. 
+Since your not directly handling credit card information, your service is 
+PCI compliant. 
 
 == Sample Form
 
@@ -147,8 +149,4 @@ In order to charge to a plan, a customer needs to be created & stored.
     :description => "payinguser@example.com"
     :plan => 'gold'                               # unique id of the plan
   )
-
-# TODO: Add plan to current customer
-#       Trial Subscription
-#       Webhooks
 
